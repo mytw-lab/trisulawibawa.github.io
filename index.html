@@ -67,7 +67,7 @@
     </div>
     <div class="row justify-content-center fs-5 text-center">
         <div class="col-md-4">
-            <p>Perusahaan kami bergerak dalam bidang Jasa Penyedia Tenaga Pengamanan sejak tahun 2002 dengan nama CV. TRIKARYA WIBAWA</p>
+            <p>Perusahaan kami bergerak dalam bidang Penyedia Jasa Tenaga Pengamanan sejak tahun 2002 dengan nama CV. TRIKARYA WIBAWA</p>
         </div>
         <div class="col-md-4">Atas dasar kebutuhan lapangan dan untuk meningkatkan profesionalisme kerja, maka pada tahun 2004 kami berganti nama menjadi PT. TRISULA WIBAWA</div>
     </div>
@@ -302,9 +302,9 @@
                             <button class="carousel-control-next text-primary" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="next">
                             </button>
                           </div>
-                          </div>
-                    </div>
-              </div>
+                        </div>
+                </div>
+        </div>
       </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#e2edff" fill-opacity="1" d="M0,96L48,96C96,96,192,96,288,106.7C384,117,480,139,576,128C672,117,768,75,864,74.7C960,75,1056,117,1152,122.7C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
  </section>
@@ -319,30 +319,49 @@
          </div>
          <div class="row justify-content-center">
              <div class="col-md-6">
-             <form>
+              <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+                <strong>Terima Kasih,</strong> Pesan anda sudah kami terima.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+             <form name="wpu-contact-form">
                 <div class="mb-3">
                   <label for="name" class="form-label">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="name" aria-describedby="name">
+                  <input type="text" class="form-control" id="name" aria-describedby="name" name="nama" />
                 </div>                          
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" aria-describedby="email">
+                  <input type="email" class="form-control" id="email" aria-describedby="email" name="email" />
                 </div> 
                 <div class="mb-3">
                     <label for="Pesan" class="form-label">Pesan</label>
-                    <textarea class="form-control" id="Pesan" rows="3"></textarea>
-                  </div>             
-                <button type="submit" class="btn btn-primary">Kirim</button>
+                    <textarea class="form-control" id="Pesan" rows="3" name="pesan"></textarea>
+                </div>             
+                <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
+
+                <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                </button>
               </form>
-         </div>
-         </div>
+          </div>
+      </div>
 </section>
  <!-- akhir Contact -->
  <!-- Footer -->
  <footer class="bg-primary text-white text-center mt-6 pb-3">
-     <p>Created by TRISULA WIBAWA<i> <i class="bi bi-instagram text-danger"></i></i><a href="https://www.instagram.com/satuanpengamanantrisula/" class="text-white fw-bold"> satuanpengamanansetdaprovjabar</a></p>
+   <p>Created by TRISULA WIBAWA<i> <i class="bi-instagram text-danger"></i></i><a href="https://www.instagram.com/satuanpengamanantrisula/" class="text-white fw-bold"> satuanpengamanansetdaprovjabar </a></p>
  </footer>
  <!-- Akhir Footer -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script><script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzuwCDS5xNlQ-K9ycYaRdLDXEQpzZU6ZccMEU50nlVMOpbrhTsrPG140hGojgNxH-INmg/exec';
+      const form = document.forms['wpu-contact-form'];
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
   </body>
 </html>
